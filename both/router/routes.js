@@ -11,4 +11,4 @@ Router.configure({
  *  Example:
  *  Router.route('/', {name: 'home'});
 */
-Router.route('/', {name: 'notes'});
+Router.route('/', {name: 'notes.index'});
