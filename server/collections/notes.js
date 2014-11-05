@@ -5,16 +5,16 @@
  *  }
  */
 Notes.allow({
-  insert: function (userId, doc) {
-    return true;
+  insert: function (userId, note) {
+    return note.owner === userId;
   },
 
   update: function (userId, doc, fieldNames, modifier) {
-    return true;
+    return note.owner === userId;
   },
 
-  remove: function (userId, doc) {
-    return true;
+  remove: function (userId, note) {
+    return note.owner === userId;
   }
 });
 
