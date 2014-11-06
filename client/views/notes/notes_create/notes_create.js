@@ -8,7 +8,7 @@ Template.NotesCreate.events({
    *
    *  }
    */
-  'submit #create-note-form': function (e) {
+  'submit .note-form': function (e) {
     var target = e.target;
 
     Meteor.call('notes.create', {

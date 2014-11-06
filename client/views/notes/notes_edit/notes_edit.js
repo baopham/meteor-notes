@@ -8,7 +8,7 @@ Template.NotesEdit.events({
    *
    *  }
    */
-  'submit #edit-note-form': function (e, tmpl) {
+  'submit .note-form': function (e, tmpl) {
     var target = e.target;
 
     Meteor.call('notes.update', tmpl.data.note._id, {

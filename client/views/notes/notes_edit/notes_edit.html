@@ -1,20 +1,5 @@
 <template name="NotesEdit">
   {{#with note}}
-    <form role="form" id="edit-note-form">
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input name="title" type="text" class="form-control" id="edit-note-title" placeholder="Enter title" required value={{ title }}>
-      </div>
-      <div class="form-group">
-        <label for="content">Note</label>
-        <textarea rows="5" name="content" class="form-control" id="edit-note-content" required data-schema-key="content">{{ content }}</textarea>
-      </div>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="public" checked={{ public }}> Make Public
-        </label>
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+    {{> NotesForm title=title content=content public=public}}
   {{/with}}
 </template>
