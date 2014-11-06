@@ -14,6 +14,7 @@ Template.NotesShow.events({
 
   'click .delete-note': function (e, tmpl) {
     Session.set('notes.editing-' + tmpl.data._id, false);
+    // TODO: confirm popup before destroying.
     Meteor.call('notes.destroy', tmpl.data._id);
     Router.go('notes.index');
   }
