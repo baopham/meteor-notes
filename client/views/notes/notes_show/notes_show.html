@@ -6,7 +6,7 @@
     <a class="delete-note">delete</a>
   {{/if }}
 
-  <p>{{ content }}</p>
+  {{#markdown}}{{ content }}{{/markdown}}
 
   {{#if editing}}
     {{> NotesEdit note=this}}
