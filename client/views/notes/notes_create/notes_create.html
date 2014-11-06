@@ -1,0 +1,18 @@
+<template name="NotesCreate">
+  <form role="form" id="create-note-form">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input name="title" type="text" class="form-control" id="create-note-title" placeholder="Enter title" required>
+    </div>
+    <div class="form-group">
+      <label for="content">Note</label>
+      <textarea rows="5" name="content" class="form-control" id="create-note-content" required data-schema-key="content"></textarea>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="public"> Make Public
+      </label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</template>

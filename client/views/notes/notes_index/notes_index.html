@@ -1,3 +1,10 @@
 <template name="NotesIndex">
-  client/views/notes/notes_index/notes_index.html
+  <h1>Your notes</h1>
+  {{#each notes}}
+    <div><a href="{{ pathFor 'notes.show' }}">{{ title }} - {{ formatDate createdAt }}</a></div>
+  {{/each}}
+
+  {{#if currentUser}}
+    {{> NotesCreate}}
+  {{/if}}
 </template>

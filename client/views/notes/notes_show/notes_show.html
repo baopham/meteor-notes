@@ -1,0 +1,14 @@
+<template name="NotesShow">
+  <h1>{{ title }}</h1>
+
+  {{#if isOwner }}
+    <a class="edit-note">edit</a>
+    <a class="delete-note">delete</a>
+  {{/if }}
+
+  <p>{{ content }}</p>
+
+  {{#if editing}}
+    {{> NotesEdit note=this}}
+  {{/if}}
+</template>

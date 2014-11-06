@@ -17,13 +17,6 @@ Template.Navbar.helpers({
    *    return Items.find();
    *  }
    */
-
-  activeIfTemplateIs: function (template) {
-    var currentRoute = Router.current();
-    return currentRoute &&
-      template === currentRoute.lookupTemplate() ? 'active' : '';
-  }
-
 });
 
 /*****************************************************************************/
