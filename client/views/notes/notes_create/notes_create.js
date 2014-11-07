@@ -17,7 +17,7 @@ Template.NotesCreate.events({
       public: target.public.checked
     }, function (error, result) {
       if (error) {
-        Flash.warning(error.error);
+        Flash.warning('form-error', error.error);
       } else {
         this.$('#notes-create-form').modal('hide');
       }
