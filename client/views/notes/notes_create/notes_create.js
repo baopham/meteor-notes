@@ -18,6 +18,8 @@ Template.NotesCreate.events({
     }, function (error, result) {
       if (error) {
         Flash.warning(error.error);
+      } else {
+        $('#notes-create-form').modal('hide');
       }
     });
 

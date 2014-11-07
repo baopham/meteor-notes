@@ -1,10 +1,19 @@
 <template name="NotesIndex">
-  <h1>Your notes</h1>
-  {{#each notes}}
-    <div><a href="{{ pathFor 'notes.show' }}">{{ title }} - {{ formatDate createdAt }}</a></div>
-  {{/each}}
+  <ul class="list-inline">
+    <li>
+      <p class="lead">Your notes</p>
+    </li>
+    <li>
+      {{#if currentUser}}
+        {{> NotesCreate}}
+      {{/if}}
+    </li>
+  </ul>
 
-  {{#if currentUser}}
-    {{> NotesCreate}}
-  {{/if}}
+
+  <div class="list-group">
+    {{#each notes}}
+      <a class="list-group-item" href="{{ pathFor 'notes.show' }}">{{ title }} - {{ formatDate createdAt }}</a>
+    {{/each}}
+  </div>
 </template>

@@ -15,6 +15,12 @@ Template.NotesEdit.events({
       title: target.title.value,
       content: target.content.value,
       public: target.public.checked
+    }, function (error) {
+      if (error) {
+        Flash.warning(error.error);
+      } else {
+        $('#notes-edit-form').modal('hide');
+      }
     });
     return false;
   }

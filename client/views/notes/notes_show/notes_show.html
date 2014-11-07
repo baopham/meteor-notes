@@ -1,14 +1,16 @@
 <template name="NotesShow">
-  <h1>{{ title }}</h1>
-
-  {{#if isOwner }}
-    <a class="edit-note">edit</a>
-    <a class="delete-note">delete</a>
-  {{/if }}
+  <ul class="list-inline">
+    <li><p class="lead">{{ title }}</p></li>
+    {{#if isOwner }}
+      <li>
+        {{> NotesEdit note=this}}
+      </li>
+      <li>
+        <a class="delete-note btn btn-danger btn-xs">delete</a>
+      </li>
+    {{/if }}
+  </ul>
 
   {{#markdown}}{{ content }}{{/markdown}}
 
-  {{#if editing}}
-    {{> NotesEdit note=this}}
-  {{/if}}
 </template>

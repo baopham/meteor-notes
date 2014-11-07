@@ -1,5 +1,23 @@
 <template name="NotesEdit">
+
+  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#notes-edit-form">
+    Edit
+  </button>
+
   {{#with note}}
-    {{> NotesForm title=title content=content public=public}}
+    <div class="modal fade" id="notes-edit-form" tabindex="-1" role="dialog" aria-labelledby="note-form" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
+          </div>
+          <div class="modal-body">
+              {{> NotesForm title=title content=content public=public}}
+          </div>
+        </div>
+      </div>
+    </div>
   {{/with}}
+
 </template>
