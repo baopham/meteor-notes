@@ -15,6 +15,10 @@ Template.NotesCreate.events({
       title: target.title.value,
       content: target.content.value,
       public: target.public.checked
+    }, function (error, result) {
+      if (error) {
+        Flash.warning(error.error);
+      }
     });
 
     e.target.title.value = '';
