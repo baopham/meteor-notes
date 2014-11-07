@@ -19,7 +19,7 @@ Template.NotesEdit.events({
       if (error) {
         Flash.warning(error.error);
       } else {
-        $('#notes-edit-form').modal('hide');
+        this.$('#notes-edit-form').modal('hide');
       }
     });
     return false;

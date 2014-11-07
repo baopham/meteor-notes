@@ -10,10 +10,20 @@
     </li>
   </ul>
 
+  <div class="row">
+    <div class="col-md-5">
+      <div class="list-group">
+        {{#each notes}}
+        <div class="list-group-item note-item {{ activeNoteClass }}">{{ title }} - {{ formatDate createdAt }}</div>
+        {{/each}}
+      </div>
+    </div>
 
-  <div class="list-group">
-    {{#each notes}}
-      <a class="list-group-item" href="{{ pathFor 'notes.show' }}">{{ title }} - {{ formatDate createdAt }}</a>
-    {{/each}}
+    <div class="col-md-7">
+      {{#with note}}
+        {{> NotesShow}}
+      {{/with}}
+    </div>
   </div>
+
 </template>

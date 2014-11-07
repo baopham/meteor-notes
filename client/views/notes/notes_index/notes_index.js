@@ -8,6 +8,9 @@ Template.NotesIndex.events({
    *
    *  }
    */
+  'click .note-item': function (e, tmpl) {
+    Session.set('selected-note', this._id);
+  }
 });
 
 Template.NotesIndex.helpers({
@@ -17,6 +20,19 @@ Template.NotesIndex.helpers({
    *    return Items.find();
    *  }
    */
+  note: function () {
+    if (Session.get('selected-note')) {
+      return Notes.findOne(Session.get('selected-note'));
+    } else {
+      var note = Notes.findOne({}, { createdAt: -1 });
+      Session.set('selected-note', note._id);
+      return note;
+    }
+  },
+
+  activeNoteClass: function () {
+    return Session.get('selected-note') == this._id && 'active';
+  }
 });
 
 /*****************************************************************************/
