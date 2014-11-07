@@ -1,0 +1,11 @@
+<template name="Search">
+  {{> esInput index="notes" placeholder="Search..." }}
+
+  {{#esEach index="notes"}}
+    {{> NotesShow}}
+  {{/esEach}}
+
+  {{#ifEsHasNoResults index="notes"}}
+    <div class="no-results">No results found!</div>
+  {{/ifEsHasNoResults}}
+</template>

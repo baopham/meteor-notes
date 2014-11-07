@@ -1,4 +1,7 @@
 Notes = new Mongo.Collection('notes');
+Notes.initEasySearch('content', {
+  limit: 20
+});
 /*
  * Add query methods like this:
  *  Notes.findPublic = function () {
