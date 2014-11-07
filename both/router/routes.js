@@ -47,6 +47,33 @@ Router.route('/notes', {
 
 });
 
+Router.route('/notes/own', {
+  name: 'notes.own',
+
+  waitOn: function () {
+    return Meteor.subscribe('notes_own');
+  },
+
+  data: function () {
+    return { notes: Notes.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } }) };
+  },
+
+  onBeforeAction: function () {
+    if (!Meteor.userId()) {
+      // render the login template but keep the url in the browser the same
+      // TODO: login template
+      this.render('login');
+    } else {
+      this.next();
+    }
+  },
+
+  action: function () {
+    delete Session.keys['selected-note']
+    this.render('NotesIndex');
+  }
+});
+
 Router.route('/notes/:_id', {
   name: 'notes.show',
 

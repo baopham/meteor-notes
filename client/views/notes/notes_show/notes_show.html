@@ -1,7 +1,16 @@
 <template name="NotesShow">
 
   <ul class="list-inline">
-    <li><p class="lead">{{ title }}</p></li>
+    <li>
+      <p class="lead">
+        {{#if public}}
+          <i class="glyphicon glyphicon-globe"></i>
+        {{else}}
+          <i class="glyphicon glyphicon-lock"></i>
+        {{/if}}
+        {{ title }}
+      </p>
+    </li>
     {{#if isOwner }}
       <li>
         {{> NotesEdit note=this}}

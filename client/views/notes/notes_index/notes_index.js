@@ -32,6 +32,14 @@ Template.NotesIndex.helpers({
 
   activeNoteClass: function () {
     return Session.get('selected-note') == this._id && 'active';
+  },
+
+  pageTitle: function () {
+    if (Router.current().route.getName() == 'notes.own') {
+      return 'Your notes';
+    } else {
+      return 'Discover notes';
+    }
   }
 });
 
