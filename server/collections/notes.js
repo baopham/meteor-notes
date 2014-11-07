@@ -6,11 +6,11 @@
  */
 Notes.allow({
   insert: function (userId, note) {
-    return note.owner === userId;
+    return note.owner === userId && Meteor.call('notes.validate', note);
   },
 
-  update: function (userId, doc, fieldNames, modifier) {
-    return note.owner === userId;
+  update: function (userId, note, fieldNames, modifier) {
+    return note.owner == userId && Meteor.call('notes.validate', note);
   },
 
   remove: function (userId, note) {
