@@ -4,7 +4,10 @@
 Router.configure({
   layoutTemplate: 'MasterLayout',
   loadingTemplate: 'Loading',
-  notFoundTemplate: 'NotFound'
+  notFoundTemplate: 'NotFound',
+  onAfterAction: function () {
+    $('#content').hide().fadeIn(350);
+  }
 });
 
 /*
