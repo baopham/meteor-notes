@@ -52,7 +52,11 @@
 }
 
 .navbar .search-trigger {
-  top: 15px;
+  padding: 15px;
   font-size: 20px;
   cursor: pointer;
+
+  @media (max-width: @grid-float-breakpoint) {
+    padding: 0px;
+  }
 }
