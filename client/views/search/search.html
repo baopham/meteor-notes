@@ -1,9 +1,6 @@
 <template name="Search">
 
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#search-modal">
-    Launch demo modal
-  </button>
+  <i class="glyphicon glyphicon-search search-trigger" data-toggle="modal" data-target="#search-modal"></i>
 
   <div class="modal fade fullscreen" id="search-modal">
     <div class="modal-dialog transparent">
@@ -13,16 +10,19 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-4 col-md-offset-5">
               <i class="glyphicon glyphicon-search"></i>
               {{> esInput index="notes" placeholder="Search..." }}
             </div>
           </div>
 
-          {{#esEach index="notes"}}
-            <hr>
-            {{> NotesShow}}
-          {{/esEach}}
+          <ul class="text-center list-inline search-results">
+            {{#esEach index="notes"}}
+              <li>
+                {{> SearchResult}}
+              </li>
+            {{/esEach}}
+          </ul>
 
           {{#ifEsHasNoResults index="notes"}}
             <hr>

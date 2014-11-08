@@ -1,0 +1,9 @@
+<template name="SearchResult">
+  <div class="panel panel-default search-result">
+    <h2><a href="{{ pathFor 'notes.show' }}">{{ title }}</a></h2>
+
+    <div class="search-result-content">
+      {{#markdown}}{{ content }}{{/markdown}}
+    </div>
+  </div>
+</template>

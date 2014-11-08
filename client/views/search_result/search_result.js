@@ -1,19 +1,16 @@
 /*****************************************************************************/
-/* Search: Event Handlers and Helpersss .js*/
+/* SearchResult: Event Handlers and Helpersss .js*/
 /*****************************************************************************/
-Template.Search.events({
+Template.SearchResult.events({
   /*
    * Example:
    *  'click .selector': function (e, tmpl) {
    *
    *  }
    */
-  'click .search-results .search-result a': function (e) {
-    $('#search-modal').modal('hide');
-  }
 });
 
-Template.Search.helpers({
+Template.SearchResult.helpers({
   /*
    * Example:
    *  items: function () {
@@ -23,13 +20,13 @@ Template.Search.helpers({
 });
 
 /*****************************************************************************/
-/* Search: Lifecycle Hooks */
+/* SearchResult: Lifecycle Hooks */
 /*****************************************************************************/
-Template.Search.created = function () {
+Template.SearchResult.created = function () {
 };
 
-Template.Search.rendered = function () {
+Template.SearchResult.rendered = function () {
 };
 
-Template.Search.destroyed = function () {
+Template.SearchResult.destroyed = function () {
 };

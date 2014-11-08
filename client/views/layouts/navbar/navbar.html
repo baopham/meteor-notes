@@ -11,8 +11,8 @@
         </button>
         <a class="navbar-brand" href="{{ pathFor 'home' }}">Penguin Notes</a>
       </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li class="{{ activePage 'notes.index' }}">
             <a href="{{ pathFor 'notes.index' }}">Notes</a>
@@ -22,10 +22,13 @@
           </li>
         </ul>
 
+        {{> Search}}
+
         <ul class="nav navbar-nav navbar-right">
           {{> loginButtons }}
         </ul>
       </div><!-- /.navbar-collapse -->
+
     </div><!-- /.container-fluid -->
   </nav>
 </template>

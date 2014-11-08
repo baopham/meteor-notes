@@ -20,14 +20,39 @@
 }
 
 #search-modal {
-  font-size: large;
 
   input {
+    font-size: 30px;
     .borderless;
-    width: 90%;
+  }
+
+  .glyphicon.glyphicon-search {
+    font-size: 30px;
   }
 
   .modal-header {
     border-bottom: none;
   }
+
+  .search-results {
+    padding-top: 20px;
+  }
+}
+
+.search-result {
+
+  width: 300px;
+
+  .search-result-content {
+    height: 100px;
+    white-space: nowrap;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.navbar .search-trigger {
+  top: 15px;
+  font-size: 20px;
+  cursor: pointer;
 }
