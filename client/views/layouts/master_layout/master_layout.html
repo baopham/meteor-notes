@@ -1,11 +1,10 @@
 <template name="MasterLayout">
   {{> Nav}}
 
+  {{> Search}}
+
   <div class="container">
     {{flash}}
-
-    {{> Search}}
-
     <div id="content">
       {{> yield}}
     </div>

@@ -1,0 +1,33 @@
+.modal.fullscreen {
+  .modal-dialog {
+    width: 98%;
+    height: 90%;
+
+    .modal-content {
+      height: 100%;
+      border-radius: 0;
+    }
+  }
+}
+
+.transparent {
+  .opacity(.85);
+}
+
+.borderless {
+  border: none;
+  border-color: transparent;
+}
+
+#search-modal {
+  font-size: large;
+
+  input {
+    .borderless;
+    width: 90%;
+  }
+
+  .modal-header {
+    border-bottom: none;
+  }
+}

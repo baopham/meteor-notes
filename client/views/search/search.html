@@ -1,11 +1,37 @@
 <template name="Search">
-  {{> esInput index="notes" placeholder="Search..." }}
 
-  {{#esEach index="notes"}}
-    {{> NotesShow}}
-  {{/esEach}}
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#search-modal">
+    Launch demo modal
+  </button>
 
-  {{#ifEsHasNoResults index="notes"}}
-    <div class="no-results">No results found!</div>
-  {{/ifEsHasNoResults}}
+  <div class="modal fade fullscreen" id="search-modal">
+    <div class="modal-dialog transparent">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+              <i class="glyphicon glyphicon-search"></i>
+              {{> esInput index="notes" placeholder="Search..." }}
+            </div>
+          </div>
+
+          {{#esEach index="notes"}}
+            <hr>
+            {{> NotesShow}}
+          {{/esEach}}
+
+          {{#ifEsHasNoResults index="notes"}}
+            <hr>
+            <div class="no-results text-center">No results found!</div>
+          {{/ifEsHasNoResults}}
+      </div><!-- /.modal-body-->
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
 </template>
