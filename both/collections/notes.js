@@ -1,5 +1,5 @@
 Notes = new Mongo.Collection('notes');
-Notes.initEasySearch('content', {
+Notes.initEasySearch(['content', 'title'], {
   limit: 20
 });
 /*
