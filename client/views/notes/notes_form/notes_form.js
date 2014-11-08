@@ -8,6 +8,9 @@ Template.NotesForm.events({
    *
    *  }
    */
+  'click .preview-tab': function (e) {
+    Session.set('preview-content', $('#' + this.type + '-note-content').val());
+  }
 });
 
 Template.NotesForm.helpers({
@@ -17,6 +20,9 @@ Template.NotesForm.helpers({
    *    return Items.find();
    *  }
    */
+  previewContent: function () {
+    return Session.get('preview-content');
+  }
 });
 
 /*****************************************************************************/

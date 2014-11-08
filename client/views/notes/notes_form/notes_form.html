@@ -1,20 +1,33 @@
 <template name="NotesForm">
   {{flash 'form-error'}}
-  <form role="form" class="note-form">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input name="title" type="text" class="form-control" id="edit-note-title" placeholder="Enter title" required value={{ title }}>
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#{{ type }}-form-tab-pane" role="tab" data-toggle="tab">Write</a></li>
+    <li role="presentation"><a class="preview-tab" href="#{{ type }}-form-preview-tab-pane" role="tab" data-toggle="tab">Preview</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="{{ type }}-form-tab-pane" role="tabpanel" class="tab-pane active">
+      <form role="form" class="note-form">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input name="title" type="text" class="form-control" id="{{ type }}-note-title" placeholder="Enter title" required value={{ title }}>
+        </div>
+        <div class="form-group">
+          <label for="content">Note</label>
+          <textarea rows="5" name="content" class="form-control" id="{{ type }}-note-content" required data-schema-key="content">{{ content }}</textarea>
+          <p class="help-block">Use markdown format</p>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="public" checked={{ public }}> Make Public
+          </label>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="content">Note</label>
-      <textarea rows="5" name="content" class="form-control" id="edit-note-content" required data-schema-key="content">{{ content }}</textarea>
-      <p class="help-block">Use markdown format</p>
+    <div id="{{ type }}-form-preview-tab-pane" class="tab-pane" role="tabpanel">
+      {{#markdown}}{{ previewContent }}{{/markdown}}
     </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="public" checked={{ public }}> Make Public
-      </label>
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
+  </div>
 </template>
