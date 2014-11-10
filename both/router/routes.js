@@ -4,10 +4,7 @@
 Router.configure({
   layoutTemplate: 'MasterLayout',
   loadingTemplate: 'Loading',
-  notFoundTemplate: 'NotFound',
-  onAfterAction: function () {
-    $('#content').hide().fadeIn(350);
-  }
+  notFoundTemplate: 'NotFound'
 });
 
 /*
@@ -36,8 +33,9 @@ Router.route('home', {
 Router.route('/notes', {
   name: 'notes.index',
 
-  waitOn: function () {
-    return Meteor.subscribe('notes_index');
+  onBeforeAction: function () {
+    Meteor.subscribe('notes_index', Session.get('notes.index.limit'));
+    this.next();
   },
 
   data: function () {
@@ -53,10 +51,6 @@ Router.route('/notes', {
 Router.route('/notes/own', {
   name: 'notes.own',
 
-  waitOn: function () {
-    return Meteor.subscribe('notes_own');
-  },
-
   data: function () {
     return { notes: Notes.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } }) };
   },
@@ -67,6 +61,7 @@ Router.route('/notes/own', {
       // TODO: login template
       this.render('login');
     } else {
+      Meteor.subscribe('notes_own', Session.get('notes.own.limit'));
       this.next();
     }
   },
@@ -81,7 +76,7 @@ Router.route('/notes/:_id', {
   name: 'notes.show',
 
   waitOn: function () {
-    return Meteor.subscribe('notes_index');
+    return Meteor.subscribe('notes_show', this.params._id);
   },
 
   data: function () {

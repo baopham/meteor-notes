@@ -1,17 +1,17 @@
 /*****************************************************************************/
-/* NotesIndex Publish Functions
+/* NotesShow Publish Functions
 /*****************************************************************************/
 
-Meteor.publish('notes_index', function (limit) {
+Meteor.publish('notes_show', function (id) {
   if (this.userId) {
-    return Notes.find({
+    return Notes.findOne({
+      _id: id,
       $or: [
         { public: true },
         { owner: this.userId }
       ]
-    }, { limit: limit, sort: { createdAt: -1 } });
-  }
-  else {
-    return Notes.find({ public: true }, { limit: limit, sort: { createdAt: -1 } });
+    });
+  } else {
+    return Notes.findOne({ _id: id, public: true });
   }
 });
