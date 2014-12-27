@@ -3,11 +3,24 @@ Notes = new Mongo.Collection('notes');
 Notes.initEasySearch(['content', 'title'], {
   limit: 20,
   use: 'mongo-db',
-  query: function () {
-    var selector = {};
-    selector['$or'] = [];
-    selector['$or'].push({ public: true });
-    selector['$or'].push({ owner: this.publishScope.userId });
+  query: function (searchString) {
+    var selector = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
+
+    selector['$and'] = [];
+
+    selector['$and'].push({
+      '$or': [
+        { public: true },
+        { owner: this.publishScope.userId }
+      ]
+    });
+
+    selector['$and'].push({
+      '$or': selector['$or']
+    });
+
+    delete selector['$or'];
+
     return selector;
   }
 });
