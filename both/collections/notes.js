@@ -1,3 +1,10 @@
+/*
+ * Add query methods like this:
+ *  Notes.findPublic = function () {
+ *    return Notes.find({is_public: true});
+ *  }
+ */
+
 Notes = new Mongo.Collection('notes');
 
 Notes.initEasySearch(['content', 'title'], {
@@ -24,10 +31,3 @@ Notes.initEasySearch(['content', 'title'], {
     return selector;
   }
 });
-
-/*
- * Add query methods like this:
- *  Notes.findPublic = function () {
- *    return Notes.find({is_public: true});
- *  }
- */
