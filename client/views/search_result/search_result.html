@@ -1,6 +1,7 @@
 <template name="SearchResult">
   <div class="panel panel-default search-result">
     <h2><a href="{{ pathFor 'notes.show' }}">{{ title }}</a></h2>
+    <p class="text-muted">by <strong>{{ username }}</strong></p>
 
     <div class="search-result-content">
       {{#markdown}}{{ content }}{{/markdown}}

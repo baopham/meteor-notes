@@ -8,7 +8,7 @@
         {{else}}
           <i class="glyphicon glyphicon-lock"></i>
         {{/if}}
-        {{ title }}
+        <a href="{{ pathFor 'notes.show' }}">{{ title }}</a>
       </p>
     </li>
     {{#if isOwner }}
@@ -20,6 +20,7 @@
       </li>
     {{/if }}
   </ul>
+  <p class="text-muted">by <strong>{{ username }}</strong></p>
 
   {{#markdown}}{{ content }}{{/markdown}}
 
