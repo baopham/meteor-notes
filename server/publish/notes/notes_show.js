@@ -4,7 +4,7 @@
 
 Meteor.publish('notes.show', function (id) {
   if (this.userId) {
-    return Notes.findOne({
+    return Notes.find({
       _id: id,
       $or: [
         { public: true },
@@ -12,6 +12,6 @@ Meteor.publish('notes.show', function (id) {
       ]
     });
   } else {
-    return Notes.findOne({ _id: id, public: true });
+    return Notes.find({ _id: id, public: true });
   }
 });
