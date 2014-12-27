@@ -2,7 +2,7 @@
 /* NotesOwn Publish Functions
 /*****************************************************************************/
 
-Meteor.publish('notes_own', function () {
+Meteor.publish('notes.own', function () {
   if (this.userId) {
     return Notes.find({ owner: this.userId });
   }

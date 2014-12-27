@@ -2,7 +2,7 @@
 /* NotesShow Publish Functions
 /*****************************************************************************/
 
-Meteor.publish('notes_show', function (id) {
+Meteor.publish('notes.show', function (id) {
   if (this.userId) {
     return Notes.findOne({
       _id: id,

@@ -34,7 +34,7 @@ Router.route('/notes', {
   name: 'notes.index',
 
   onBeforeAction: function () {
-    Meteor.subscribe('notes_index', Session.get('notes.index.limit'));
+    Meteor.subscribe('notes.index', Session.get('notes.index.limit'));
     this.next();
   },
 
@@ -61,7 +61,7 @@ Router.route('/notes/own', {
       // TODO: login template
       this.render('login');
     } else {
-      Meteor.subscribe('notes_own', Session.get('notes.own.limit'));
+      Meteor.subscribe('notes.own', Session.get('notes.own.limit'));
       this.next();
     }
   },
@@ -76,7 +76,7 @@ Router.route('/notes/:_id', {
   name: 'notes.show',
 
   waitOn: function () {
-    return Meteor.subscribe('notes_show', this.params._id);
+    return Meteor.subscribe('notes.show', this.params._id);
   },
 
   data: function () {

@@ -2,7 +2,7 @@
 /* NotesIndex Publish Functions
 /*****************************************************************************/
 
-Meteor.publish('notes_index', function (limit) {
+Meteor.publish('notes.index', function (limit) {
   if (this.userId) {
     return Notes.find({
       $or: [
