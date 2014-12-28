@@ -29,6 +29,11 @@ Template.NotesIndex.helpers({
    *    return Items.find();
    *  }
    */
+  ready: function () {
+    var key = Router.current().route.getName() + '.ready';
+    return Session.get(key);
+  },
+
   note: function () {
     if (Session.get('selected-note')) {
       return Notes.findOne(Session.get('selected-note'));

@@ -3,7 +3,7 @@
 /*****************************************************************************/
 Router.configure({
   layoutTemplate: 'MasterLayout',
-  loadingTemplate: 'Loading',
+  loadingTemplate: 'spinner',
   notFoundTemplate: 'NotFound'
 });
 
@@ -34,7 +34,9 @@ Router.route('/notes', {
   name: 'notes.index',
 
   onBeforeAction: function () {
-    Meteor.subscribe('notes.index', Session.get('notes.index.limit'));
+    Meteor.subscribe('notes.index', Session.get('notes.index.limit'), function () {
+      Session.set(this.name + '.ready', true);
+    });
     this.next();
   },
 
@@ -61,7 +63,9 @@ Router.route('/notes/own', {
       // TODO: login template
       this.render('login');
     } else {
-      Meteor.subscribe('notes.own', Session.get('notes.own.limit'));
+      Meteor.subscribe('notes.own', Session.get('notes.own.limit'), function () {
+        Session.set(this.name + '.ready', true);
+      });
       this.next();
     }
   },

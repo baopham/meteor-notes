@@ -24,9 +24,16 @@
             {{/if}}
           </div>
         {{/each}}
-        {{#if moreResults}}
-          <a href="#" class="btn load-more">Load more</a>
+
+        {{#if ready}}
+          {{#if moreResults}}
+            <br>
+            <button type="button" class="btn btn-info btn-block load-more">Load more</button>
+          {{/if}}
+        {{else}}
+          {{> spinner}}
         {{/if}}
+
       </div>
     </div>
 
