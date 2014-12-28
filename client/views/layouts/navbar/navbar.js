@@ -17,6 +17,14 @@ Template.Navbar.helpers({
    *    return Items.find();
    *  }
    */
+  pathForList: function (routeName) {
+    var limit = parseInt(Session.get(routeName + '.limit'));
+    if (!!limit && limit != App.NOTES_INCREMENT) {
+      return Router.routes[routeName].path({}, { query: 'limit=' + limit });
+    }
+
+    return Router.routes[routeName].path();
+  }
 });
 
 /*****************************************************************************/

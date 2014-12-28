@@ -15,11 +15,11 @@
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav">
           <li class="{{ activePage 'notes.index' }}">
-            <a href="{{ pathFor 'notes.index' }}">Notes</a>
+            <a href="{{ pathForList 'notes.index' }}">Notes</a>
           </li>
           {{#if currentUser}}
             <li class="{{ activePage 'notes.own' }}">
-              <a href="{{ pathFor 'notes.own' }}">Your Notes</a>
+              <a href="{{ pathForList 'notes.own' }}">Your Notes</a>
             </li>
           {{/if}}
         </ul>
