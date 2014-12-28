@@ -16,7 +16,7 @@
       <div class="list-group">
         {{#each notes}}
           <div class="list-group-item note-item {{ activeNoteClass }}">
-            {{ title }} - {{ formatDate createdAt }}
+            {{ truncate title 40 }} - {{ formatDate createdAt }}
             {{#if public}}
               <i class="pull-right glyphicon glyphicon-globe"></i>
             {{else}}

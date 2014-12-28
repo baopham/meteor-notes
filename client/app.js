@@ -22,6 +22,12 @@ App.helpers = {
     var currentRouteName = Router.current().route && Router.current().route.getName();
 
     return _.include(routeNames, currentRouteName) && 'active';
+  },
+
+  truncate: function (str, length) {
+    length = length || 10;
+    var ellipsis = (str.length > length) ? '...' : '';
+    return str.substr(0, length) + ellipsis;
   }
 };
 
