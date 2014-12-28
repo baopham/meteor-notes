@@ -28,7 +28,7 @@
         {{#if ready}}
           {{#if moreResults}}
             <br>
-            <button type="button" class="btn btn-info btn-block load-more">Load more</button>
+            <a class="btn btn-info btn-block" href="{{ loadMoreUrl }}">Load more</a>
           {{/if}}
         {{else}}
           {{> spinner}}

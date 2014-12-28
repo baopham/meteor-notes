@@ -19,10 +19,12 @@ Router.route('home', {
   }
 });
 
-var noteListSubscribe = function (subscription) {
+var noteListSubscribe = function (subscription, query) {
+  var limit = (!!query.limit && !isNaN(query.limit) && parseInt(query.limit)) || App.NOTES_INCREMENT;
   var limitKey = App.routeSessionKey('limit');
+  Session.set(limitKey, limit);
   var readyKey = App.routeSessionKey('ready');
-  Meteor.subscribe(subscription, Session.get(limitKey), function () {
+  Meteor.subscribe(subscription, limit, function () {
     Session.set(readyKey, true);
   });
 }
@@ -31,7 +33,7 @@ Router.route('/notes', {
   name: 'notes.index',
 
   onBeforeAction: function () {
-    noteListSubscribe('notes.index');
+    noteListSubscribe('notes.index', this.params.query);
     this.next();
   },
 
@@ -57,7 +59,7 @@ Router.route('/notes/own', {
       // render the login template but keep the url in the browser the same
       this.render('Login');
     } else {
-      noteListSubscribe('notes.own');
+      noteListSubscribe('notes.own', this.params.query);
       this.next();
     }
   },

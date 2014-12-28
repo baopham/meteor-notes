@@ -3,6 +3,8 @@
 /*****************************************************************************/
 App = {};
 
+App.NOTES_INCREMENT = Meteor.settings.public.notesInc;
+
 App.routeSessionKey = function (type) {
     return Router.current().route.getName() + '.' + type;
 };

@@ -12,12 +12,8 @@ Template.NotesIndex.events({
   'click .note-item': function (e, tmpl) {
     var key = App.routeSessionKey('selectedNote');
     Session.set(key, this._id);
-  },
-
-  'click .load-more': function (e, tmpl) {
-    incLimit();
-    return false;
   }
+
 });
 
 Template.NotesIndex.helpers({
@@ -29,6 +25,11 @@ Template.NotesIndex.helpers({
    */
   ready: function () {
     return dataReady();
+  },
+
+  loadMoreUrl: function () {
+    var limit = Session.get(App.routeSessionKey('limit')) + App.NOTES_INCREMENT;
+    return Router.current().route.path() + '?limit=' + limit;
   },
 
   note: function () {
@@ -64,11 +65,6 @@ function dataReady() {
 
 function isOwnPage() {
   return Router.current().route.getName() == 'notes.own';
-}
-
-function incLimit() {
-  var key = sessionLimitKey();
-  Session.set(key, Session.get(key) + App.NOTES_INCREMENT);
 }
 
 function sessionLimitKey() {

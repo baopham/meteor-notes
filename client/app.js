@@ -5,7 +5,6 @@
 _.extend(App, {
 });
 
-App.NOTES_INCREMENT = Meteor.settings.public.notesInc;
 Session.setDefault('notes.index.limit', App.NOTES_INCREMENT);
 Session.setDefault('notes.own.limit', App.NOTES_INCREMENT);
 
