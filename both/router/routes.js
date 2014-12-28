@@ -55,8 +55,7 @@ Router.route('/notes/own', {
   onBeforeAction: function () {
     if (!Meteor.userId()) {
       // render the login template but keep the url in the browser the same
-      // TODO: login template
-      this.render('login');
+      this.render('Login');
     } else {
       noteListSubscribe('notes.own');
       this.next();
