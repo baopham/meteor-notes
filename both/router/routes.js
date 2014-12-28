@@ -63,7 +63,6 @@ Router.route('/notes/own', {
   },
 
   action: function () {
-    delete Session.keys['selected-note']
     this.render('NotesIndex');
   }
 });

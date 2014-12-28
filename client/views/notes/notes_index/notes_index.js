@@ -10,7 +10,8 @@ Template.NotesIndex.events({
    *  }
    */
   'click .note-item': function (e, tmpl) {
-    Session.set('selected-note', this._id);
+    var key = App.routeSessionKey('selectedNote');
+    Session.set(key, this._id);
   },
 
   'click .load-more': function (e, tmpl) {
@@ -32,19 +33,21 @@ Template.NotesIndex.helpers({
   },
 
   note: function () {
-    if (Session.get('selected-note')) {
-      return Notes.findOne(Session.get('selected-note'));
+    var key = App.routeSessionKey('selectedNote');
+    if (Session.get(key)) {
+      return Notes.findOne(Session.get(key));
     } else {
       var note = Notes.findOne({}, { sort: { createdAt: -1 } });
       if (note) {
-        Session.set('selected-note', note._id);
+        Session.set(key, note._id);
         return note;
       }
     }
   },
 
   activeNoteClass: function () {
-    return Session.get('selected-note') == this._id && 'active';
+    var key = App.routeSessionKey('selectedNote');
+    return Session.get(key) == this._id && 'active';
   },
 
   pageTitle: function () {
