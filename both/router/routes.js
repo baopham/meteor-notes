@@ -77,7 +77,13 @@ Router.route('/notes/:_id', {
   },
 
   data: function () {
-    return Notes.findOne(this.params._id);
+    var note = Notes.findOne(this.params._id);
+
+    if (!note) {
+      this.render('NotFound');
+    } else {
+      return note;
+    }
   },
 
   action: function () {
