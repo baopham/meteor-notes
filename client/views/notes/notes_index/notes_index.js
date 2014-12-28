@@ -28,20 +28,17 @@ Template.NotesIndex.helpers({
    *  }
    */
   ready: function () {
-    var key = App.routeSessionKey('ready');
-    return !!Session.get(key);
+    return dataReady();
   },
 
   note: function () {
     var key = App.routeSessionKey('selectedNote');
     if (Session.get(key)) {
       return Notes.findOne(Session.get(key));
-    } else {
+    } else if (dataReady()) {
       var note = Notes.findOne({}, { sort: { createdAt: -1 } });
-      if (note) {
-        Session.set(key, note._id);
-        return note;
-      }
+      Session.set(key, note._id);
+      return note;
     }
   },
 
@@ -59,6 +56,11 @@ Template.NotesIndex.helpers({
     return !(Notes.find().fetch().length < Session.get(key));
   }
 });
+
+function dataReady() {
+  var key = App.routeSessionKey('ready');
+  return !!Session.get(key);
+}
 
 function isOwnPage() {
   return Router.current().route.getName() == 'notes.own';
