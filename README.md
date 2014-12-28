@@ -6,7 +6,7 @@ Scaffolding tool: [em](https://github.com/EventedMind/em)
 Usage:
 ------
 ```bash
-$ meteor
+$ meteor --settings config/development/settings.json
 ```
 
 
