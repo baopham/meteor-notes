@@ -19,8 +19,9 @@ App.helpers = {
 
   activePage: function () {
     var routeNames = arguments;
+    var currentRouteName = Router.current().route && Router.current().route.getName();
 
-    return _.include(routeNames, Router.current().route.getName()) && 'active';
+    return _.include(routeNames, currentRouteName) && 'active';
   }
 };
 
