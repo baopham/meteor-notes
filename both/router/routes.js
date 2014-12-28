@@ -19,24 +19,19 @@ Router.route('home', {
   }
 });
 
-// TODO: make controller work.
-// Router.route('/notes', {
-//   name: 'notes.index',
-//   controller: NotesIndexController
-// });
-//
-// Router.route('/notes/:_id', {
-//   name: 'notes.show',
-//   controller: 'NotesShowController'
-// });
+var noteListSubscribe = function (subscription) {
+  var limitKey = App.routeSessionKey('limit');
+  var readyKey = App.routeSessionKey('ready');
+  Meteor.subscribe(subscription, Session.get(limitKey), function () {
+    Session.set(readyKey, true);
+  });
+}
 
 Router.route('/notes', {
   name: 'notes.index',
 
   onBeforeAction: function () {
-    Meteor.subscribe('notes.index', Session.get('notes.index.limit'), function () {
-      Session.set(this.name + '.ready', true);
-    });
+    noteListSubscribe('notes.index');
     this.next();
   },
 
@@ -63,9 +58,7 @@ Router.route('/notes/own', {
       // TODO: login template
       this.render('login');
     } else {
-      Meteor.subscribe('notes.own', Session.get('notes.own.limit'), function () {
-        Session.set(this.name + '.ready', true);
-      });
+      noteListSubscribe('notes.own');
       this.next();
     }
   },

@@ -1,9 +1,6 @@
 /*****************************************************************************/
 /* NotesIndex: Event Handlers and Helpersss .js*/
 /*****************************************************************************/
-var NOTES_INCREMENT = 3;
-Session.setDefault('notes.index.limit', NOTES_INCREMENT);
-Session.setDefault('notes.own.limit', NOTES_INCREMENT);
 
 Template.NotesIndex.events({
   /*
@@ -30,8 +27,8 @@ Template.NotesIndex.helpers({
    *  }
    */
   ready: function () {
-    var key = Router.current().route.getName() + '.ready';
-    return Session.get(key);
+    var key = App.routeSessionKey('ready');
+    return !!Session.get(key);
   },
 
   note: function () {
@@ -39,8 +36,10 @@ Template.NotesIndex.helpers({
       return Notes.findOne(Session.get('selected-note'));
     } else {
       var note = Notes.findOne({}, { sort: { createdAt: -1 } });
-      Session.set('selected-note', note._id);
-      return note;
+      if (note) {
+        Session.set('selected-note', note._id);
+        return note;
+      }
     }
   },
 
@@ -64,11 +63,11 @@ function isOwnPage() {
 
 function incLimit() {
   var key = sessionLimitKey();
-  Session.set(key, Session.get(key) + NOTES_INCREMENT);
+  Session.set(key, Session.get(key) + App.NOTES_INCREMENT);
 }
 
 function sessionLimitKey() {
-  return isOwnPage() ? 'notes.own.limit' : 'notes.index.limit';
+  return App.routeSessionKey('limit');
 }
 
 /*****************************************************************************/
